@@ -104,7 +104,7 @@ Descripción de los endpoints implementados:
 curl -i -X GET http://localhost:8080/api/planets/1 -H 'Content-Type: application/json'
 ```
 
-#### Response
+#### Response OK
 
     HTTP/1.1 200 OK
     Server: nginx/1.22.1
@@ -149,6 +149,22 @@ curl -i -X GET http://localhost:8080/api/planets/1 -H 'Content-Type: application
       "edited": "2014-12-20T20:58:18.411000Z",
       "url": "https://swapi.dev/api/planets/1/"
     }
+
+#### Response KO
+
+```
+HTTP/1.1 404 Not Found
+Server: nginx/1.22.1
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/8.0.24
+Cache-Control: no-cache, private
+Date: Tue, 01 Nov 2022 19:40:31 GMT
+X-Robots-Tag: noindex
+
+{"detail":"Not found"}%
+```
 
 
 
