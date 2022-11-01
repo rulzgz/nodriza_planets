@@ -47,14 +47,14 @@ La estructura de la aplicación es la siguiente:
 
 ```bash
 .
-├── app									// Código fuente de la aplicación
-├── docker-compose.yml					// Configuración de docker
-├── Makefile							// Definición comandos make
-├── nginx								// Configuración nginx
-├── php									// Configuración php
+├── app                                 // Código fuente de la aplicación
+├── docker-compose.yml                  // Configuración de docker
+├── Makefile                            // Definición comandos make
+├── nginx                               // Configuración nginx
+├── php                                 // Configuración php
 ├── Planets.postman_collection.json     // Colección de peticiones para Postman
-├── README.md							// Este documento
-└── README.pdf							// Documentación en formato PDF
+├── README.md                           // Este documento
+└── README.pdf                          // Documentación en formato PDF
 
 ```
 
