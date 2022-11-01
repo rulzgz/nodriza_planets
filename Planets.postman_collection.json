@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "85f7141c-0a8a-4bcd-bccd-02cfccb5ee02",
+		"name": "Planets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "301322"
+	},
+	"item": [
+		{
+			"name": "Get planet",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/planets/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"planets",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create planet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"test\",\n    \"rotation_period\": 1,\n    \"orbital_period\": 2,\n    \"diameter\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/planet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"planet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

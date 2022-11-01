@@ -7,12 +7,14 @@ namespace App\Entity;
 use App\Repository\PlanetRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: PlanetRepository::class)]
 class Planet
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -28,9 +30,6 @@ class Planet
     #[ORM\Column(nullable: true)]
     private ?int $diameter = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $films_count = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created = null;
 
@@ -39,12 +38,19 @@ class Planet
         return $this->id;
     }
 
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -87,18 +93,6 @@ class Planet
         return $this;
     }
 
-    public function getFilmsCount(): ?int
-    {
-        return $this->films_count;
-    }
-
-    public function setFilmsCount(?int $films_count): self
-    {
-        $this->films_count = $films_count;
-
-        return $this;
-    }
-
     public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
@@ -109,5 +103,23 @@ class Planet
         $this->created = $created;
 
         return $this;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('id', new Assert\NotBlank(['groups'  => ['validateRequired']]));
+        $metadata->addPropertyConstraint('name', new Assert\NotBlank(['groups'  => ['validateRequired']]));
+
+        $metadata->addPropertyConstraint('id', new Assert\Positive(['groups' => ['validateType']]));
+        $metadata->addPropertyConstraint('rotation_period', new Assert\Positive(['groups' => ['validateType']]));
+        $metadata->addPropertyConstraint('orbital_period', new Assert\Positive(['groups' => ['validateType']]));
+        $metadata->addPropertyConstraint('diameter', new Assert\Positive(['groups' => ['validateType']]));
+
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => 'id',
+            'groups' => ['validateUnique']
+        ]));
+
+        $metadata->setGroupSequence(['Planet', 'validateRequired', 'validateType', 'validateUnique']);
     }
 }
