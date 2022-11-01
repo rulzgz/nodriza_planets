@@ -2,7 +2,7 @@ error:
 	@echo "Por favor elige una opción válida (help, build, run, stop, status, composer-install, composer-update, shell)"
 
 build:
-	docker-compose up -d --build && docker-compose exec php composer install -n
+	docker-compose up -d --build && docker-compose exec php composer install -n && docker-compose exec php php bin/console doctrine:migrations:migrate
 
 run:
 	docker-compose up -d

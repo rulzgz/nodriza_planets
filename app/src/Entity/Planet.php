@@ -23,7 +23,7 @@ class Planet
     #[ORM\Column(nullable: true)]
     private ?int $orbital_period = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $diameter = null;
 
     #[ORM\Column(nullable: true)]
@@ -78,7 +78,7 @@ class Planet
         return $this->diameter;
     }
 
-    public function setDiameter(int $diameter): self
+    public function setDiameter(?int $diameter): self
     {
         $this->diameter = $diameter;
 
